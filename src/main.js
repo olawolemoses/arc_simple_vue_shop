@@ -1,8 +1,22 @@
 import Vue from 'vue'
 import App from './App.vue'
+import router from "./router";
+import VueNoty from "vuejs-noty";
 
-Vue.config.productionTip = false
+import "vuejs-noty/dist/vuejs-noty.css";
+
+Vue.use(VueNoty);
+
+Vue.use(require('vue-moment'));
+
+Vue.config.productionTip = false;
+
+const authData = localStorage.getItem("auth");
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  router,
+  data: {
+    auth: authData ? JSON.parse(authData) : {}
+  },
+  render: h => h(App)
+}).$mount("#app");
